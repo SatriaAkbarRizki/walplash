@@ -3,9 +3,9 @@ part 'urls.g.dart';
 
 @JsonSerializable()
 class Urls {
-  String raw;
+  String small;
 
-  Urls({required this.raw});
+  Urls({required this.small});
 
   factory Urls.fromJson(Map<String, dynamic> json) => _$UrlsFromJson(json);
 

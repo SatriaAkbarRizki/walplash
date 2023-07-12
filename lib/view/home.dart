@@ -12,6 +12,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   Presenter presenter = Presenter();
   List<ImageModel>? _image;
+  bool isClick = true;
 
   @override
   void initState() {
@@ -27,30 +28,135 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<ImageModel>?>(
-        future: presenter.fetchUser(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else {
-            if (snapshot.hasData) {
-              return GridView.builder(
-                itemCount: snapshot.data!.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3),
-                itemBuilder: (context, index) => CircleAvatar(
-                    foregroundImage:
-                        NetworkImage(snapshot.data![index].urls.raw)),
-              );
-            } else {
-              return Center(
-                child: Text('Not Found'),
-              );
-            }
-          }
-        },
+      appBar: AppBar(
+        forceMaterialTransparency: true,
+        title: Text('Walplash'),
+      ),
+      backgroundColor: Color(0xff0f393646),
+      body: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 5),
+            child: itemUn(),
+          ),
+          FutureBuilder<List<ImageModel>?>(
+            future: presenter.fetchUser(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Align(
+                  alignment: Alignment.center,
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                if (snapshot.hasData) {
+                  return Expanded(
+                      child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: GridView.builder(
+                      physics: AlwaysScrollableScrollPhysics(),
+                      itemCount: snapshot.data!.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2),
+                      itemBuilder: (context, index) {
+                        return ImageUn(snapshot, index);
+                      },
+                    ),
+                  ));
+                } else {
+                  return Center(
+                    child: Text('Not Found'),
+                  );
+                }
+              }
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget itemUn() {
+    return Row(
+      children: [
+        TextButton(
+          onPressed: () {
+            setState(() {
+              if (isClick == false) {
+                isClick = true;
+              } else {
+                isClick = false;
+              }
+            });
+          },
+          child: Row(
+            children: [
+              Container(
+                width: 160,
+                decoration: BoxDecoration(
+                    border: isClick == true
+                        ? Border(
+                            bottom: BorderSide(color: Colors.white, width: 1))
+                        : null),
+                child: const Align(
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      height: 28,
+                      child: Text(
+                        'Explore',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    )),
+              ),
+            ],
+          ),
+        ),
+        TextButton(
+          onPressed: () {
+            setState(() {
+              if (isClick == false) {
+                isClick = true;
+              } else {
+                isClick = false;
+              }
+            });
+          },
+          child: Row(
+            children: [
+              Container(
+                width: 160,
+                decoration: BoxDecoration(
+                    border: isClick == false
+                        ? Border(
+                            bottom: BorderSide(color: Colors.white, width: 1))
+                        : null),
+                child: Align(
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      height: 28,
+                      child: Text(
+                        'Category',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    )),
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget ImageUn(AsyncSnapshot<List<ImageModel>?> snapshot, int index) {
+    return Padding(
+      padding: EdgeInsets.all(5.0), // Atur jarak sesuai kebutuhan
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(snapshot.data![index].urls.small),
+            fit: BoxFit.fill,
+          ),
+          borderRadius: BorderRadius.circular(20),
+        ),
       ),
     );
   }

@@ -16,9 +16,9 @@ class Presenter {
       return null;
     } else {
       List<dynamic> data = jsonDecode(response.body);
-      data.forEach((element) {
-        print(element);
-      });
+      // data.forEach((element) {
+      //   print(element);
+      // });
       return imageModel = data
           .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList();

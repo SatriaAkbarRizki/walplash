@@ -7,9 +7,9 @@ part of 'urls.dart';
 // **************************************************************************
 
 Urls _$UrlsFromJson(Map<String, dynamic> json) => Urls(
-      raw: json['raw'] as String,
+      small: json['small'] as String,
     );
 
 Map<String, dynamic> _$UrlsToJson(Urls instance) => <String, dynamic>{
-      'raw': instance.raw,
+      'small': instance.small,
     };
