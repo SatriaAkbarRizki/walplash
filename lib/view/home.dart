@@ -28,11 +28,13 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    print('image length: ${_image?.length}');
     return Scaffold(
       appBar: AppBar(
         forceMaterialTransparency: true,
-        title: Text('Walplash'),
+        title: Text(
+          'Walplash',
+          style: TextStyle(fontFamily: 'Lobster'),
+        ),
       ),
       backgroundColor: Color(0xff0f393646),
       body: Column(
@@ -51,25 +53,19 @@ class _HomeViewState extends State<HomeView> {
                 );
               } else {
                 if (snapshot.hasData) {
-                  if (_image!.isEmpty) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    return Expanded(
-                        child: Container(
-                      padding: EdgeInsets.all(10),
-                      child: GridView.builder(
-                        physics: AlwaysScrollableScrollPhysics(),
-                        itemCount: snapshot.data!.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2),
-                        itemBuilder: (context, index) {
-                          return ImageUn(index);
-                        },
-                      ),
-                    ));
-                  }
+                  return Expanded(
+                      child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: GridView.builder(
+                      physics: AlwaysScrollableScrollPhysics(),
+                      itemCount: snapshot.data!.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2),
+                      itemBuilder: (context, index) {
+                        return ImageUn(snapshot, context, index);
+                      },
+                    ),
+                  ));
                 } else {
                   return Center(
                     child: Text('Not Found'),
@@ -154,7 +150,8 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget ImageUn(int index) {
+  Widget ImageUn(AsyncSnapshot<List<ImageModel>?> snapshot,
+      BuildContext context, int index) {
     return Padding(
       padding: EdgeInsets.all(5.0), // Atur jarak sesuai kebutuhan
       child: InkWell(
@@ -164,14 +161,14 @@ class _HomeViewState extends State<HomeView> {
               context,
               MaterialPageRoute(
                 builder: (context) => FullImage(
-                  list: [_image![index]],
+                  list: [snapshot.data![index]],
                 ),
               ));
         },
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(_image![index].urls.small),
+              image: NetworkImage(snapshot.data![index].urls.small),
               fit: BoxFit.fill,
             ),
             borderRadius: BorderRadius.circular(20),

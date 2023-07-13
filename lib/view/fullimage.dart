@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:walplash/model/imagemodel.dart';
 
@@ -32,7 +31,6 @@ class _FullImageState extends State<FullImage> {
   @override
   Widget build(BuildContext context) {
     print(widget.list[0].user.total_photos);
-
 
     return Scaffold(
       body: ListView(
@@ -83,7 +81,7 @@ class _FullImageState extends State<FullImage> {
                 ],
               ),
               Container(
-                height: 200,
+                height: 220,
                 padding: EdgeInsets.all(10),
                 alignment: Alignment.bottomCenter,
                 decoration: BoxDecoration(color: Colors.black),
@@ -95,7 +93,10 @@ class _FullImageState extends State<FullImage> {
                       child: Text(
                         maxLines: 2,
                         widget.list[0].alt_description!,
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontFamily: 'Madurai'),
                       ),
                     ),
                     SizedBox(
@@ -114,7 +115,11 @@ class _FullImageState extends State<FullImage> {
                               onPressed: () {},
                               child: Text(
                                 'Download',
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                ),
                               )),
                         ),
                         SizedBox(
@@ -130,7 +135,11 @@ class _FullImageState extends State<FullImage> {
                               onPressed: () {},
                               child: Text(
                                 'Share',
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Lobster',
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600),
                               )),
                         )
                       ],
@@ -145,8 +154,10 @@ class _FullImageState extends State<FullImage> {
                           children: [
                             Text(
                               widget.list[0].likes.toString(),
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 23),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 23,
+                                  fontFamily: 'Madurai'),
                             ),
                             Text(
                               'Likes',
@@ -162,8 +173,10 @@ class _FullImageState extends State<FullImage> {
                           children: [
                             Text(
                               outputDate,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 23),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 23,
+                                  fontFamily: 'Madurai'),
                             ),
                             Text(
                               'Published On',
@@ -179,13 +192,17 @@ class _FullImageState extends State<FullImage> {
                           children: [
                             Text(
                               widget.list[0].user.total_photos.toString(),
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 23),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 23,
+                                  fontFamily: 'Madurai'),
                             ),
                             Text(
-                              'Published On',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 14),
+                              'Total Photos',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                              ),
                             )
                           ],
                         )
@@ -209,7 +226,6 @@ class _FullImageState extends State<FullImage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          
           backgroundColor: Colors.black,
           content: Row(
             children: [

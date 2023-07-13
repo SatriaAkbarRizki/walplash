@@ -15,7 +15,6 @@ class Presenter {
       return null;
     } else {
       List<dynamic> data = jsonDecode(response.body);
-      print('data ${data.length}');
       // data.forEach((element) {
       //   print(element);
       // });

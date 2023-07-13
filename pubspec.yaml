@@ -22,3 +22,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Lobster
+      fonts:
+        - asset: assets/fonts/Lobster.ttf
+    - family: Madurai
+      fonts:
+        - asset: assets/fonts/Madurai.ttf
+
