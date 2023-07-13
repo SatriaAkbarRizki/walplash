@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:walplash/model/imagemodel.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,7 +7,7 @@ class Presenter {
   List<ImageModel>? imageModel;
   Future<List<ImageModel>?> fetchUser() async {
     Uri uri = Uri.parse(
-        "https://api.unsplash.com/photos/?client_id=3MdHdkeKdwAyjtLlkXRXeSlFLaMWJsRIY0ArOvr-EwY");
+        "https://api.unsplash.com/photos/?client_id=3MdHdkeKdwAyjtLlkXRXeSlFLaMWJsRIY0ArOvr-EwY&per_page=80");
     final response = await http.get(uri);
 
     if (response.statusCode != 200) {
@@ -16,6 +15,7 @@ class Presenter {
       return null;
     } else {
       List<dynamic> data = jsonDecode(response.body);
+      print('data ${data.length}');
       // data.forEach((element) {
       //   print(element);
       // });

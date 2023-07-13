@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:walplash/model/imagemodel.dart';
 import 'package:walplash/presenter/presenter.dart';
+import 'package:walplash/view/fullimage.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -27,6 +28,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    print('image length: ${_image?.length}');
     return Scaffold(
       appBar: AppBar(
         forceMaterialTransparency: true,
@@ -49,19 +51,25 @@ class _HomeViewState extends State<HomeView> {
                 );
               } else {
                 if (snapshot.hasData) {
-                  return Expanded(
-                      child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: GridView.builder(
-                      physics: AlwaysScrollableScrollPhysics(),
-                      itemCount: snapshot.data!.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2),
-                      itemBuilder: (context, index) {
-                        return ImageUn(snapshot, index);
-                      },
-                    ),
-                  ));
+                  if (_image!.isEmpty) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Expanded(
+                        child: Container(
+                      padding: EdgeInsets.all(10),
+                      child: GridView.builder(
+                        physics: AlwaysScrollableScrollPhysics(),
+                        itemCount: snapshot.data!.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2),
+                        itemBuilder: (context, index) {
+                          return ImageUn(index);
+                        },
+                      ),
+                    ));
+                  }
                 } else {
                   return Center(
                     child: Text('Not Found'),
@@ -146,16 +154,28 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget ImageUn(AsyncSnapshot<List<ImageModel>?> snapshot, int index) {
+  Widget ImageUn(int index) {
     return Padding(
       padding: EdgeInsets.all(5.0), // Atur jarak sesuai kebutuhan
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(snapshot.data![index].urls.small),
-            fit: BoxFit.fill,
+      child: InkWell(
+        onTap: () {
+          print('index of image: $index');
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FullImage(
+                  list: [_image![index]],
+                ),
+              ));
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(_image![index].urls.small),
+              fit: BoxFit.fill,
+            ),
+            borderRadius: BorderRadius.circular(20),
           ),
-          borderRadius: BorderRadius.circular(20),
         ),
       ),
     );
