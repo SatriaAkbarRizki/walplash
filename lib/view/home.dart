@@ -26,6 +26,14 @@ class _HomeViewState extends State<HomeView> {
     setState(() {});
   }
 
+  var _imageCategory = {
+    0: 'assets/images/nature.jpg',
+    1: 'assets/images/animal.jpg',
+    2: 'assets/images/film.jpg',
+    3: 'assets/images/travel.jpg',
+    4: 'assets/images/architecture.jpg',
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,19 +61,28 @@ class _HomeViewState extends State<HomeView> {
                 );
               } else {
                 if (snapshot.hasData) {
-                  return Expanded(
-                      child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: GridView.builder(
-                      physics: AlwaysScrollableScrollPhysics(),
-                      itemCount: snapshot.data!.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2),
-                      itemBuilder: (context, index) {
-                        return ImageUn(snapshot, context, index);
-                      },
-                    ),
-                  ));
+                  if (isClick == false) {
+                    return Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: categoryImage(),
+                      ),
+                    );
+                  } else {
+                    return Expanded(
+                        child: Container(
+                      padding: EdgeInsets.all(10),
+                      child: GridView.builder(
+                        physics: AlwaysScrollableScrollPhysics(),
+                        itemCount: snapshot.data!.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2),
+                        itemBuilder: (context, index) {
+                          return imageUn(snapshot, context, index);
+                        },
+                      ),
+                    ));
+                  }
                 } else {
                   return Center(
                     child: Text('Not Found'),
@@ -150,7 +167,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget ImageUn(AsyncSnapshot<List<ImageModel>?> snapshot,
+  Widget imageUn(AsyncSnapshot<List<ImageModel>?> snapshot,
       BuildContext context, int index) {
     return Padding(
       padding: EdgeInsets.all(5.0), // Atur jarak sesuai kebutuhan
@@ -175,6 +192,25 @@ class _HomeViewState extends State<HomeView> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget categoryImage() {
+    return ListView.builder(
+      itemCount: _imageCategory.length,
+      itemBuilder: (context, index) {
+        return Container(
+          height: 200,
+          decoration: BoxDecoration(
+            border: Border.all(width: 8),
+            color: Colors.red,
+          ),
+          child: Image.asset(
+            '${_imageCategory[index]}',
+            fit: BoxFit.cover,
+          ),
+        );
+      },
     );
   }
 }
