@@ -45,7 +45,7 @@ class _FullImageState extends State<FullImage> {
                     height: 580,
                     child: Image.network(
                       widget.list[0].urls.regular,
-                      fit: BoxFit.fitHeight,
+                      fit: BoxFit.fill,
                     ),
                   ),
                   Positioned(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:walplash/model/imagemodel.dart';
 import 'package:walplash/presenter/presenter.dart';
+import 'package:blur/blur.dart';
+import 'package:walplash/view/categoryview.dart';
 import 'package:walplash/view/fullimage.dart';
 
 class HomeView extends StatefulWidget {
@@ -13,11 +15,13 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   Presenter presenter = Presenter();
   List<ImageModel>? _image;
+  List<dynamic>? listMap;
   bool isClick = true;
 
   @override
   void initState() {
     showImage();
+    listMap = _imageCategory.entries.toList();
     super.initState();
   }
 
@@ -27,11 +31,11 @@ class _HomeViewState extends State<HomeView> {
   }
 
   var _imageCategory = {
-    0: 'assets/images/nature.jpg',
-    1: 'assets/images/animal.jpg',
-    2: 'assets/images/film.jpg',
-    3: 'assets/images/travel.jpg',
-    4: 'assets/images/architecture.jpg',
+    'nature': 'assets/images/nature.jpg',
+    'animal': 'assets/images/animal.jpg',
+    'film': 'assets/images/film.jpg',
+    'travel': 'assets/images/travel.jpg',
+    'architecture': 'assets/images/architecture.jpg',
   };
 
   @override
@@ -202,12 +206,38 @@ class _HomeViewState extends State<HomeView> {
         return Container(
           height: 200,
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
             border: Border.all(width: 8),
             color: Colors.red,
           ),
-          child: Image.asset(
-            '${_imageCategory[index]}',
-            fit: BoxFit.cover,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CategoryView(category: listMap![index].key),
+                  ));
+            },
+            child: Stack(children: [
+              Positioned.fill(
+                  child: Image.asset(
+                '${listMap![index].value}',
+                fit: BoxFit.cover,
+              )),
+              Positioned(
+                  top: 130,
+                  child: Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      '${listMap![index].key}',
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontFamily: 'Beau',
+                          color: Colors.white),
+                    ),
+                  ))
+            ]),
           ),
         );
       },
