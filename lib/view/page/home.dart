@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:walplash/model/imagemodel.dart';
 import 'package:walplash/presenter/presenter.dart';
-import 'package:blur/blur.dart';
-import 'package:walplash/view/categoryview.dart';
-import 'package:walplash/view/fullimage.dart';
+import 'package:pinterest_nav_bar/pinterest_nav_bar.dart';
+import 'package:walplash/view/page/categoryview.dart';
+import 'package:walplash/view/page/fullimage.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -16,7 +16,8 @@ class _HomeViewState extends State<HomeView> {
   Presenter presenter = Presenter();
   List<ImageModel>? _image;
   List<dynamic>? listMap;
-  bool isClick = true;
+  bool isClickCategory = true;
+  bool isClickSearch = true;
 
   @override
   void initState() {
@@ -43,7 +44,7 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         forceMaterialTransparency: true,
-        title: Text(
+         title: Text(
           'Walplash',
           style: TextStyle(fontFamily: 'Lobster'),
         ),
@@ -65,7 +66,7 @@ class _HomeViewState extends State<HomeView> {
                 );
               } else {
                 if (snapshot.hasData) {
-                  if (isClick == false) {
+                  if (isClickCategory == false) {
                     return Expanded(
                       child: Padding(
                         padding: EdgeInsets.all(10),
@@ -106,10 +107,10 @@ class _HomeViewState extends State<HomeView> {
         TextButton(
           onPressed: () {
             setState(() {
-              if (isClick == false) {
-                isClick = true;
+              if (isClickCategory == false) {
+                isClickCategory = true;
               } else {
-                isClick = false;
+                isClickCategory = false;
               }
             });
           },
@@ -118,7 +119,7 @@ class _HomeViewState extends State<HomeView> {
               Container(
                 width: 160,
                 decoration: BoxDecoration(
-                    border: isClick == true
+                    border: isClickCategory == true
                         ? Border(
                             bottom: BorderSide(color: Colors.white, width: 1))
                         : null),
@@ -138,10 +139,10 @@ class _HomeViewState extends State<HomeView> {
         TextButton(
           onPressed: () {
             setState(() {
-              if (isClick == false) {
-                isClick = true;
+              if (isClickCategory == false) {
+                isClickCategory = true;
               } else {
-                isClick = false;
+                isClickCategory = false;
               }
             });
           },
@@ -150,7 +151,7 @@ class _HomeViewState extends State<HomeView> {
               Container(
                 width: 160,
                 decoration: BoxDecoration(
-                    border: isClick == false
+                    border: isClickCategory == false
                         ? Border(
                             bottom: BorderSide(color: Colors.white, width: 1))
                         : null),
@@ -244,3 +245,11 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
+
+                // if (isClickSearch == true) {
+                //   isClickSearch = false;
+                //   print(isClickSearch);
+                // } else {
+                //   isClickSearch = true;
+                //   print(isClickSearch);
+                // }

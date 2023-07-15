@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:walplash/model/imagemodel.dart';
 import 'package:walplash/presenter/presenter.dart';
-import 'package:walplash/view/fullimage.dart';
+import 'package:walplash/view/page/fullimage.dart';
 
 class CategoryView extends StatefulWidget {
-  String category;
+  final String category;
   CategoryView({required this.category, super.key});
 
   @override
