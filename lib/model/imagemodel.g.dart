@@ -13,6 +13,7 @@ ImageModel _$ImageModelFromJson(Map<String, dynamic> json) => ImageModel(
       likes: json['likes'] as int,
       urls: Urls.fromJson(json['urls'] as Map<String, dynamic>),
       user: User.fromJson(json['user'] as Map<String, dynamic>),
+      links: Links.fromJson(json['links'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ImageModelToJson(ImageModel instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$ImageModelToJson(ImageModel instance) =>
       'likes': instance.likes,
       'urls': instance.urls.toJson(),
       'user': instance.user.toJson(),
+      'links': instance.links.toJson(),
     };

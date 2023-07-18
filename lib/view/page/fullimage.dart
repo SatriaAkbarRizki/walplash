@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:walplash/model/imagemodel.dart';
 import 'package:walplash/presenter/presenter.dart';
 import 'package:walplash/services/notif_service.dart';
@@ -41,6 +42,7 @@ class _FullImageState extends State<FullImage> {
   @override
   Widget build(BuildContext context) {
     // print(widget.list[0].user.total_photos);
+    print('profile user: ${widget.list[0].links.html}');
 
     return Scaffold(
       body: ListView(
@@ -145,7 +147,9 @@ class _FullImageState extends State<FullImage> {
                               style: ButtonStyle(
                                   side: MaterialStatePropertyAll(
                                       BorderSide(color: Colors.white))),
-                              onPressed: () async {},
+                              onPressed: () async {
+                                shareImage(widget.list[0].links.html);
+                              },
                               child: Text(
                                 'Share',
                                 style: TextStyle(
@@ -277,5 +281,9 @@ class _FullImageState extends State<FullImage> {
         );
       },
     );
+  }
+
+  void shareImage(String link) {
+    Share.share(link.toString());
   }
 }

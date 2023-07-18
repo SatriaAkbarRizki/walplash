@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:walplash/model/links/links.dart';
 import 'package:walplash/model/urls/urls.dart';
 import 'package:walplash/model/user./user.dart';
 
@@ -12,6 +13,7 @@ class ImageModel {
   int likes;
   Urls urls;
   User user;
+  Links links;
 
   ImageModel(
       {required this.id,
@@ -19,7 +21,8 @@ class ImageModel {
       required this.created_at,
       required this.likes,
       required this.urls,
-      required this.user});
+      required this.user,
+      required this.links});
 
   factory ImageModel.fromJson(Map<String, dynamic> json) =>
       _$ImageModelFromJson(json);
