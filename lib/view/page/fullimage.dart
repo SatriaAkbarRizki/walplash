@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:walplash/model/imagemodel.dart';
+import 'package:walplash/presenter/presenter.dart';
+import 'package:walplash/services/notif_service.dart';
 
 class FullImage extends StatefulWidget {
   final List<ImageModel> list;
@@ -12,12 +14,20 @@ class FullImage extends StatefulWidget {
 }
 
 class _FullImageState extends State<FullImage> {
+  Presenter presenter = Presenter();
   late String outputDate;
 
   @override
   void initState() {
     outputDate = filterRelases();
+    initNotiService();
     super.initState();
+  }
+
+  void initNotiService() {
+    NotificationService().notificationsPlugin;
+    NotificationService().initNotification();
+    NotificationService().notificationsDetails();
   }
 
   String filterRelases() {
@@ -30,7 +40,7 @@ class _FullImageState extends State<FullImage> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.list[0].user.total_photos);
+    // print(widget.list[0].user.total_photos);
 
     return Scaffold(
       body: ListView(
@@ -45,7 +55,7 @@ class _FullImageState extends State<FullImage> {
                     height: 580,
                     child: Image.network(
                       widget.list[0].urls.regular,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   Positioned(
@@ -112,7 +122,10 @@ class _FullImageState extends State<FullImage> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStatePropertyAll(Colors.white)),
-                              onPressed: () {},
+                              onPressed: () async {
+                                presenter.saveImage(
+                                    widget.list[0].urls.regular, context);
+                              },
                               child: Text(
                                 'Download',
                                 style: TextStyle(
@@ -132,7 +145,7 @@ class _FullImageState extends State<FullImage> {
                               style: ButtonStyle(
                                   side: MaterialStatePropertyAll(
                                       BorderSide(color: Colors.white))),
-                              onPressed: () {},
+                              onPressed: () async {},
                               child: Text(
                                 'Share',
                                 style: TextStyle(
