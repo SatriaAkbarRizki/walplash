@@ -42,7 +42,7 @@ class _FullImageState extends State<FullImage> {
   @override
   Widget build(BuildContext context) {
     // print(widget.list[0].user.total_photos);
-    print('profile user: ${widget.list[0].links.html}');
+    print('links user: ${widget.list[0].links.html}');
 
     return Scaffold(
       body: ListView(

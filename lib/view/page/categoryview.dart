@@ -30,9 +30,12 @@ class _CategoryViewState extends State<CategoryView> {
             future: presenter.categoryImage(widget.category),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Align(
+                return Container(
+                  height: 600,
                   alignment: Alignment.center,
-                  child: CircularProgressIndicator(),
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 );
               } else {
                 if (snapshot.hasData) {

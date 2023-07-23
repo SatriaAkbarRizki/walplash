@@ -44,7 +44,7 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         forceMaterialTransparency: true,
-         title: Text(
+        title: Text(
           'Walplash',
           style: TextStyle(fontFamily: 'Lobster'),
         ),
@@ -60,9 +60,11 @@ class _HomeViewState extends State<HomeView> {
             future: presenter.fetchUser(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Align(
-                  alignment: Alignment.center,
-                  child: CircularProgressIndicator(),
+                return Container(
+                  height: 500,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 );
               } else {
                 if (snapshot.hasData) {
