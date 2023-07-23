@@ -7,6 +7,6 @@ void main() {
     'architecture': 'assets/images/architecture.jpg',
   };
 
-  List<dynamic> listMap = _imageCategory.entries.toList();
-  print(listMap.length);
+  // List<dynamic> listMap = _imageCategory.entries.toList();
+  // // print(listMap.length);
 }

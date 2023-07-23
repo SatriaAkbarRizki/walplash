@@ -18,12 +18,12 @@ class _CategoryViewState extends State<CategoryView> {
     return Scaffold(
       appBar: AppBar(
         forceMaterialTransparency: true,
-        title: Text(
+        title: const Text(
           'Walplash',
           style: TextStyle(fontFamily: 'Lobster'),
         ),
       ),
-      backgroundColor: Color(0xff0f393646),
+      backgroundColor: const Color(0xff0f393646),
       body: Column(
         children: [
           FutureBuilder<List<ImageModel>?>(
@@ -33,7 +33,7 @@ class _CategoryViewState extends State<CategoryView> {
                 return Container(
                   height: 600,
                   alignment: Alignment.center,
-                  child: Center(
+                  child: const Center(
                     child: CircularProgressIndicator(),
                   ),
                 );
@@ -41,11 +41,11 @@ class _CategoryViewState extends State<CategoryView> {
                 if (snapshot.hasData) {
                   return Expanded(
                       child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: GridView.builder(
-                      physics: AlwaysScrollableScrollPhysics(),
+                      physics: const AlwaysScrollableScrollPhysics(),
                       itemCount: snapshot.data!.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2),
                       itemBuilder: (context, index) {
                         return imageUn(snapshot, context, index);
@@ -53,7 +53,7 @@ class _CategoryViewState extends State<CategoryView> {
                     ),
                   ));
                 } else {
-                  return Center(
+                  return const Center(
                     child: Text('Not Found'),
                   );
                 }
@@ -68,7 +68,7 @@ class _CategoryViewState extends State<CategoryView> {
   Widget imageUn(AsyncSnapshot<List<ImageModel>?> snapshot,
       BuildContext context, int index) {
     return Padding(
-      padding: EdgeInsets.all(5.0), // Atur jarak sesuai kebutuhan
+      padding: const EdgeInsets.all(5.0), // Atur jarak sesuai kebutuhan
       child: InkWell(
         onTap: () {
           print('index of image: $index');

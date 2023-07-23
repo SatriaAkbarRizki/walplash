@@ -68,13 +68,13 @@ class _FullImageState extends State<FullImage> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.arrow_back_ios_new,
                             color: Colors.white,
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 250),
+                          margin: const EdgeInsets.only(left: 250),
                           child: GestureDetector(
                             onTap: () {
                               showMyProfile(widget.list[0].user.name,
@@ -94,9 +94,9 @@ class _FullImageState extends State<FullImage> {
               ),
               Container(
                 height: 220,
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 alignment: Alignment.bottomCenter,
-                decoration: BoxDecoration(color: Colors.black),
+                decoration: const BoxDecoration(color: Colors.black),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -105,13 +105,13 @@ class _FullImageState extends State<FullImage> {
                       child: Text(
                         maxLines: 2,
                         widget.list[0].alt_description!,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                             fontFamily: 'Madurai'),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
@@ -121,14 +121,14 @@ class _FullImageState extends State<FullImage> {
                           height: 50,
                           width: 200,
                           child: TextButton(
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                   backgroundColor:
                                       MaterialStatePropertyAll(Colors.white)),
                               onPressed: () async {
                                 presenter.saveImage(
                                     widget.list[0].urls.regular, context);
                               },
-                              child: Text(
+                              child: const Text(
                                 'Download',
                                 style: TextStyle(
                                   color: Colors.black,
@@ -137,20 +137,20 @@ class _FullImageState extends State<FullImage> {
                                 ),
                               )),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 25,
                         ),
                         SizedBox(
                           height: 50,
                           width: 110,
                           child: TextButton(
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                   side: MaterialStatePropertyAll(
                                       BorderSide(color: Colors.white))),
                               onPressed: () async {
                                 shareImage(widget.list[0].links.html);
                               },
-                              child: Text(
+                              child: const Text(
                                 'Share',
                                 style: TextStyle(
                                     color: Colors.white,
@@ -161,7 +161,7 @@ class _FullImageState extends State<FullImage> {
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Row(
@@ -171,50 +171,50 @@ class _FullImageState extends State<FullImage> {
                           children: [
                             Text(
                               widget.list[0].likes.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 23,
                                   fontFamily: 'Madurai'),
                             ),
-                            Text(
+                            const Text(
                               'Likes',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 14),
                             )
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 55,
                         ),
                         Column(
                           children: [
                             Text(
                               outputDate,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 23,
                                   fontFamily: 'Madurai'),
                             ),
-                            Text(
+                            const Text(
                               'Published On',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 14),
                             )
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 50,
                         ),
                         Column(
                           children: [
                             Text(
                               widget.list[0].user.total_photos.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 23,
                                   fontFamily: 'Madurai'),
                             ),
-                            Text(
+                            const Text(
                               'Total Photos',
                               style: TextStyle(
                                 color: Colors.white,
@@ -249,29 +249,29 @@ class _FullImageState extends State<FullImage> {
               CircleAvatar(
                 backgroundImage: NetworkImage(profile),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Text(
                 name,
-                style: TextStyle(color: Colors.white, fontSize: 18),
+                style: const TextStyle(color: Colors.white, fontSize: 18),
               )
             ],
           ),
           actions: [
             Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: SizedBox(
                 height: 40,
                 width: 60,
                 child: TextButton(
-                    style: ButtonStyle(
+                    style: const ButtonStyle(
                         side: MaterialStatePropertyAll(
                             BorderSide(color: Colors.white))),
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text(
+                    child: const Text(
                       'Ok',
                       style: TextStyle(color: Colors.white),
                     )),

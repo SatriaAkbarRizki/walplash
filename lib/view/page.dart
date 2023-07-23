@@ -12,16 +12,16 @@ class Pages extends StatefulWidget {
 
 class _PagesState extends State<Pages> {
   int selectPage = 0;
-  final List<Widget> _pages = [HomeView(), SearchImage()];
+  final List<Widget> _pages = [const HomeView(), const SearchImage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color(0xff0f393646),
+      backgroundColor: const Color(0xff0f393646),
       body: _pages[selectPage],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: PinterestNavBar(
-        selectedItemColor: Color(0xff27E1C1),
+        selectedItemColor: const Color(0xff27E1C1),
         backgroundColor: Colors.black,
         currentIndex: selectPage,
         onTap: (i) {

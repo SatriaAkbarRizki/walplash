@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:walplash/model/imagemodel.dart';
 import 'package:walplash/presenter/presenter.dart';
-import 'package:pinterest_nav_bar/pinterest_nav_bar.dart';
 import 'package:walplash/view/page/categoryview.dart';
 import 'package:walplash/view/page/fullimage.dart';
 

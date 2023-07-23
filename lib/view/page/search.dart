@@ -30,19 +30,19 @@ class _SearchImageState extends State<SearchImage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         forceMaterialTransparency: true,
-        title: Text(
+        title: const Text(
           'Walplash',
           style: TextStyle(fontFamily: 'Lobster'),
         ),
       ),
-      backgroundColor: Color(0xff0f393646),
+      backgroundColor: const Color(0xff0f393646),
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             child: TextField(
               onSubmitted: search,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               controller: textSearch,
               decoration: const InputDecoration(
                 hintStyle: TextStyle(color: Color(0xffD1D1D1)),
@@ -60,7 +60,7 @@ class _SearchImageState extends State<SearchImage> {
             fit: FlexFit.tight,
             child: Container(
 
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: FutureBuilder<List<ImageModel>?>(
                 future: textSearch.text.isNotEmpty
                     ? presenter.searchImage(textSearch.text)
@@ -72,9 +72,9 @@ class _SearchImageState extends State<SearchImage> {
                     if (snapshot.hasData) {
                       return GridView.builder(
                         shrinkWrap: true,
-                        physics: AlwaysScrollableScrollPhysics(),
+                        physics: const AlwaysScrollableScrollPhysics(),
                         itemCount: snapshot.data!.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                         ),
                         itemBuilder: (context, index) {
@@ -98,12 +98,12 @@ class _SearchImageState extends State<SearchImage> {
     return Column(
       children: [
         Image.asset('assets/images/searchphotos.png'),
-        Text(
+        const Text(
           'Nothing image here',
           style: TextStyle(
               color: Colors.white, fontFamily: 'Madurai', fontSize: 16),
         ),
-        Text(
+        const Text(
           'Try searching fpr something ',
           style: TextStyle(
               color: Colors.white70, fontFamily: 'Madurai', fontSize: 14),
@@ -115,7 +115,7 @@ class _SearchImageState extends State<SearchImage> {
   Widget imageUn(AsyncSnapshot<List<ImageModel>?> snapshot,
       BuildContext context, int index) {
     return Padding(
-      padding: EdgeInsets.all(5.0), // Atur jarak sesuai kebutuhan
+      padding: const EdgeInsets.all(5.0), // Atur jarak sesuai kebutuhan
       child: InkWell(
         onTap: () {
           print('index of image: $index');
