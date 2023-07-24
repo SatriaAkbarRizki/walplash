@@ -12,7 +12,7 @@ class Presenter {
   List<ImageModel>? imageModel;
   Future<List<ImageModel>?> fetchUser() async {
     Uri uri = Uri.parse(
-        "https://api.unsplash.com/photos/?client_id=3MdHdkeKdwAyjtLlkXRXeSlFLaMWJsRIY0ArOvr-EwY&per_page=30&orientation=portrait");
+        "https://api.unsplash.com/photos/?client_id=qd9wbvhCrChT1o51WzyMGvYkPb0lorhJP3EAEOs_Y6M&per_page=30&orientation=portrait");
     final response = await http.get(uri);
 
     if (response.statusCode != 200) {
@@ -31,7 +31,7 @@ class Presenter {
 
   Future<List<ImageModel>?> categoryImage(String category) async {
     Uri uri = Uri.parse(
-        'https://api.unsplash.com/search/photos?query=${category.toString()}%20and%20culture%20&client_id=3MdHdkeKdwAyjtLlkXRXeSlFLaMWJsRIY0ArOvr-EwY&per_page=30&orientation=portrait&order_by=popular');
+        'https://api.unsplash.com/search/photos?query=${category.toString()}%20and%20culture%20&client_id=qd9wbvhCrChT1o51WzyMGvYkPb0lorhJP3EAEOs_Y6M&per_page=30&orientation=portrait&order_by=popular');
     final response = await http.get(uri);
     if (response.statusCode != 200) {
       return null;
@@ -49,7 +49,7 @@ class Presenter {
 
   Future<List<ImageModel>?> searchImage(String category) async {
     Uri uri = Uri.parse(
-        'https://api.unsplash.com/search/photos?query=${category.toString()}%20and%20culture%20&client_id=3MdHdkeKdwAyjtLlkXRXeSlFLaMWJsRIY0ArOvr-EwY&per_page=30&orientation=portrait');
+        'https://api.unsplash.com/search/photos?query=${category.toString()}%20and%20culture%20&client_id=qd9wbvhCrChT1o51WzyMGvYkPb0lorhJP3EAEOs_Y6M&per_page=30&orientation=portrait');
     final response = await http.get(uri);
     if (response.statusCode != 200) {
       return null;
